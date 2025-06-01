@@ -1,0 +1,121 @@
+*{
+    padding:0;
+    border:black;
+}
+
+body{
+    background-color:rgb(51, 52, 70);
+    position: relative;
+}
+
+.headingBanner{
+    position: sticky;
+    top:0px;
+    z-index:1;
+    width:75vw;
+    height:10vh;
+    margin:0px auto;
+    color:rgb(51, 52, 70);
+    font-size:x-large;
+    font-weight:700;
+    background-color: rgb(184, 207, 206);
+    text-align: center;
+    align-content: center;
+    border-radius:5px;
+}
+
+.gamebox{
+    display:inline-grid;
+    position:absolute;
+    background-color: rgb(127, 140, 170);
+    height:50vh;
+    width:40vw;
+    margin: 10vh auto ;
+    padding:1vw;;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap:10px;
+    justify-content: space-between;
+    border-radius:2vmin;
+}
+
+.box{
+    background-color:#C7D9DD;
+    height:15.25vh; width:11vw;
+    margin-top:1vh;
+    text-align: center;
+    justify-content:center;
+    border-radius: 2vmin;
+    color:rgb(2, 98, 133);
+    font-size:6vh;
+}
+
+.box:active{
+    background-color:rgb(51, 52, 70);
+}
+
+.start
+{   position:relative;
+    top:55vh;
+    display:inline-block;
+    height:5vh; width: 13vw;
+    padding:1px;
+    border-radius:1.25vmin;
+    background-color:#55679C;
+    color:white;
+    font-weight:700;
+    font-family:monospace;
+    margin: 0px auto;
+}
+
+.start:disabled{
+    cursor:not-allowed;
+}
+.resetbutton{
+    position:relative;
+    display:inline-block;
+    height:5vh; width: 13vw;
+    left:15vw;
+    top:55vh;
+    padding:1px;
+    border-radius:1.25vmin;
+    background-color:#55679C;
+    color:white;
+    font-weight:700;
+    font-family:monospace;
+    margin: 0px auto;
+
+}
+
+.image1{
+    position:relative;
+    top:29vh; left:5vw;
+    border-radius:1.75vmin;
+    height:20vh; width:15vw;
+}
+
+.image2
+{
+    position:relative;
+    top:29vh; left:65vw;
+    border-radius:1.75vmin;
+    height:20vh; width:15vw;
+}
+
+.winnerteller{
+    position:sticky;
+    top:60vh;
+    z-index:20;
+    color:white;
+    font-size:x-large;
+    background-color:#4B4376;
+    height:10vh; width:80vw;
+    margin:0 auto;
+    text-align: center;
+    align-content: center;
+    border:1px solid rgb(220, 163, 163);
+    border-radius:5px;
+}
+
+.hide{
+    display:none;
+}

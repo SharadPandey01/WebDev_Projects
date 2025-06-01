@@ -4,6 +4,7 @@ let box = document.querySelectorAll(".box");
 //can be accessed as box[0] , box[1] etc
 
 let winnerbanner = document.querySelector(".winnerteller");
+let winnerfound = false;
 
 // clicks disabled till game starts
 box.forEach((button)=>{
@@ -14,18 +15,21 @@ let TurnX; // stores who starts the game first
 
 // Start button takes decision  for who starts first from user input
 start.addEventListener("click", () => {
-    let firstTurn = prompt("Who will start ? Player-X or Player-O ?");
-    
-    start.disabled=true;
-    //enabling the clicks after start button is clicked
-    box.forEach((button)=>{
-    button.disabled = false;
+   let firstTurn = prompt("Who will start? Player-X or Player-O?").toLowerCase();
+if (firstTurn === "player-x") {
+    TurnX = true;
+} else if (firstTurn === "player-o") {
+    TurnX = false;
+} else {
+    alert("Invalid input! Please enter 'Player-X' or 'Player-O'.");
+    start.disabled = false; // Keeping the start button enabled to try again
+    return;
+}
 
+box.forEach((button)=>{
+    button.disabled = false;
 })
 
-    if( firstTurn.toLowerCase() === "playerx" ) { TurnX = true; }
-
-   else { TurnX = false; }
 } );
 
 // Filling of the innerText of the 9 boxes as game starts
@@ -45,41 +49,38 @@ box.forEach((box) => {
             box.disabled = true;  // after a block is clicked once, it is disabled for further clicks
             ++movecount;
             console.log('moves made so far: ',movecount);
-            checkwinner();
+            checkwinner(); // calling checkwinner function after each click !!
     } );
 })
 
 let reset = document.querySelector(".resetbutton");
-
 reset.addEventListener("click", ()=>{
 
     // once reset is clicked, disabling all the boxes until start is clicked
     box.forEach((button)=>{
         button.innerText="";
-        box.forEach((button)=>{
-            button.disabled=true;
-        });
-
+       button.disabled=true;
         start.disabled=false;  // once game is reset, re-enabling the start button
         movecount=0;
         console.clear();
-        winnerbanner.classList.add("hide");
+        winnerbanner.classList.add("hide"); // adding hide class to winnerbanner for next game
+        winnerfound=false;  // resetting the winnerfound to false to eliminate previous game's effect
     })
 })
 
+// all the possible cases of winning the game
 const WinPatterns = [
-    [0, 1, 2], // Top row
-    [3, 4, 5], // Middle row
-    [6, 7, 8], // Bottom row
-    [0, 3, 6], // Left column
-    [1, 4, 7], // Middle column
-    [2, 5, 8], // Right column
-    [0, 4, 8], // Diagonal (top-left to bottom-right)
-    [2, 4, 6]  // Diagonal (top-right to bottom-left)
+    [0, 1, 2],
+    [3, 4, 5], 
+    [6, 7, 8], 
+    [0, 3, 6], 
+    [1, 4, 7], 
+    [2, 5, 8], 
+    [0, 4, 8], 
+    [2, 4, 6]  
 ];
 
-let winnerfound = false;
-
+// function to check winner of the game
 function checkwinner() {
     for( let pattern of WinPatterns)
     {
@@ -91,6 +92,7 @@ function checkwinner() {
         {
             winnerfound = true; 
             console.log(`the winner of the game is: ${pos1val}`);
+            winnerbanner.innerText=`WINNER IS PLAYER-${pos1val}`;
             break;
         }
     }
